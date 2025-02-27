@@ -18,18 +18,20 @@ public class CreateBonsai : IEndpoint
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
-        var bonsai = new Bonsai();
-
-        bonsai.Id = db.Bonsais.Any()
+        var newId = db.Bonsais.Any()
             ? db.Bonsais.Max(bonsai => bonsai.Id) + 1
             : 1;
-        bonsai.Name = request.Name;
-        bonsai.Species = request.Species;
-        bonsai.AgeYears = request.AgeYears;
-        bonsai.LastWatered = request.LastWatered;
-        bonsai.LastPruned = request.LastPruned;
-        bonsai.Style = request.Style;
-        bonsai.CareLevel = request.CareLevel;
+
+        var bonsai = new Bonsai(        
+            id: newId,
+            name: request.Name,
+            species: request.Species,
+            age: request.AgeYears,
+            lastWatered: request.LastWatered,
+            lastPruned: request.LastPruned,
+            bonsaiStyle: request.Style,
+            careLevel: request.CareLevel
+            );
 
         db.Bonsais.Add(bonsai);
 

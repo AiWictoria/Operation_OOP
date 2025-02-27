@@ -1,4 +1,6 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using OperationOOP.Core.Models.Plants;
+
+namespace OperationOOP.Api.Endpoints;
 public class GetBonsai : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
