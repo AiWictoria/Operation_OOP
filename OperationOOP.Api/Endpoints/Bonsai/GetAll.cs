@@ -29,5 +29,6 @@ public class GetAllBonsais : IEndpoint
                 LastWatered: item.LastWatered,
                 LastPruned: item.LastPruned
             )).ToList();
+
     }
 }
