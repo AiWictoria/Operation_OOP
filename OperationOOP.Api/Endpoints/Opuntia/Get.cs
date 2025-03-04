@@ -21,7 +21,6 @@ public class GetOpuntia : IEndpoint
     {
         var opuntia = db.Opuntias.Find(opuntia => opuntia.Id == request.Id);
 
-        // map bonsai to response dto
         var response = new Response(
             Id: opuntia.Id,
             Name: opuntia.Name,

@@ -13,7 +13,7 @@ public class GetAllPolypodys : IEndpoint
         DateTime LastWatered
     );
 
-    //Logic
+    // Gets all plants from polypody unless there is a name query
     private static List<Response> Handle(IDatabase db, [FromQuery] string? query)
     {
         var polypodys = db.Polypody.ToList();

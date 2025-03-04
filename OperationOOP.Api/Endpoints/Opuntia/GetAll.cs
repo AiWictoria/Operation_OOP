@@ -14,7 +14,7 @@ public class GetAllOpuntias : IEndpoint
         DateTime LastPruned
     );
 
-    //Logic
+    // Gets all plants from Opuntias unless there is a name query
     private static List<Response> Handle(IDatabase db, [FromQuery] string? query)
     {
         var opuntias = db.Opuntias.ToList();

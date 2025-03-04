@@ -16,7 +16,7 @@ public class GetAllBonsais : IEndpoint
         DateTime LastPruned
     );
 
-    //Logic
+    // Gets all plants from bonsai unless there is a name query
     private static List<Response> Handle(IDatabase db,[FromQuery] string? query)
     {
         var bonsais = db.Bonsais.ToList();

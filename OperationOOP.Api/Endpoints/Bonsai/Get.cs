@@ -24,7 +24,6 @@ public class GetBonsai : IEndpoint
     {
         var bonsai = db.Bonsais.Find(bonsai => bonsai.Id == request.Id);
 
-        // map bonsai to response dto
         var response = new Response(
             Id: bonsai.Id,
             Name: bonsai.Name,
