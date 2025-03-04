@@ -1,39 +1,39 @@
 ﻿using OperationOOP.Core.Models.Plants;
 
 namespace OperationOOP.Api.Endpoints;
-public class CreateOpuntia : IEndpoint
+public class CreatePolypody : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapPost("/opuntias", Handle)
-        .WithSummary("Opuntia plants");
+        .MapPost("/polypodys", Handle)
+        .WithSummary("Polypody plants");
 
     public record Request(
         string Name,
         string Species,
         int AgeYears,
-        DateTime LastPruned,
+        DateTime LastWatered,
         CareLevel CareLevel
         );
     public record Response(int id);
 
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
-        var newId = db.Opuntias.Any()
-            ? db.Opuntias.Max(opuntia => opuntia.Id) + 1
+        var newId = db.Polypody.Any()
+            ? db.Polypody.Max(polypody => polypody.Id) + 1
             : 1;
 
-        var opuntia = new Opuntia(        
+        var polypody = new Polypody(        
             id: newId,
             name: request.Name,
             species: request.Species,
             age: request.AgeYears,
-            lastPruned: request.LastPruned,
+            lastWatered: request.LastWatered,
             careLevel: request.CareLevel
             );
 
-        db.Opuntias.Add(opuntia);
+        db.Polypody.Add(polypody);
 
-        return TypedResults.Ok(new Response(opuntia.Id));
+        return TypedResults.Ok(new Response(polypody.Id));
     }
 }
 

@@ -6,5 +6,6 @@ namespace OperationOOP.Core.Data
     {
         public List<Bonsai> Bonsais { get; set; } = new List<Bonsai>();
         public List<Opuntia> Opuntias { get; set; } = new List<Opuntia>();
+        public List<Polypody> Polypody { get; set; } = new List<Polypody>();
     }
 }

@@ -1,25 +1,25 @@
 ﻿namespace OperationOOP.Api.Endpoints;
-public class GetAllOpuntias : IEndpoint
+public class GetAllPolypodys : IEndpoint
 {
     // Mapping
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapGet("/opuntias", Handle);
+        .MapGet("/polypodys", Handle);
 
     // Request and Response types
     public record Response(
         int Id,
         string Name,
-        DateTime LastPruned
+        DateTime LastWatered
     );
 
     //Logic
     private static List<Response> Handle(IDatabase db)
     {
-        return db.Opuntias
+        return db.Polypody
             .Select(item => new Response(
                 Id: item.Id,
                 Name: item.Name,
-                LastPruned: item.LastPruned
+                LastWatered: item.LastWatered
             )).ToList();
     }
 }

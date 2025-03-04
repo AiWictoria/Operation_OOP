@@ -1,10 +1,10 @@
 ﻿using OperationOOP.Core.Models.Plants;
 
 namespace OperationOOP.Api.Endpoints;
-public class GetOpuntia : IEndpoint
+public class GetPolypody : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
-        .MapGet("/opuntias/{id}", Handle);
+        .MapGet("/polypodys/{id}", Handle);
 
     public record Request(int Id);
 
@@ -13,22 +13,21 @@ public class GetOpuntia : IEndpoint
         string Name,
         string Species,
         int AgeYears,
-        DateTime LastPruned,
+        DateTime LastWatered,
         CareLevel CareLevel
     );
 
     private static Response Handle([AsParameters] Request request, IDatabase db)
     {
-        var opuntia = db.Opuntias.Find(opuntia => opuntia.Id == request.Id);
+        var polypody = db.Polypody.Find(polypody => polypody.Id == request.Id);
 
-        // map bonsai to response dto
         var response = new Response(
-            Id: opuntia.Id,
-            Name: opuntia.Name,
-            Species: opuntia.Species,
-            AgeYears: opuntia.AgeYears,
-            LastPruned: opuntia.LastPruned,
-            CareLevel: opuntia.CareLevel
+            Id: polypody.Id,
+            Name: polypody.Name,
+            Species: polypody.Species,
+            AgeYears: polypody.AgeYears,
+            LastWatered: polypody.LastWatered,
+            CareLevel: polypody.CareLevel
             );
         return response;
     }

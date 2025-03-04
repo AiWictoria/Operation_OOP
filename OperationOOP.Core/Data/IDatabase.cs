@@ -11,6 +11,7 @@ namespace OperationOOP.Core.Data
     {
         List<Bonsai> Bonsais { get; set; }
         List<Opuntia> Opuntias { get; set; }
+        List<Polypody> Polypody { get; set; }
     }
 
 }

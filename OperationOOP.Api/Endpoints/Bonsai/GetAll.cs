@@ -1,4 +1,6 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace OperationOOP.Api.Endpoints;
 public class GetAllBonsais : IEndpoint
 {
     // Mapping
@@ -15,9 +17,15 @@ public class GetAllBonsais : IEndpoint
     );
 
     //Logic
-    private static List<Response> Handle(IDatabase db)
+    private static List<Response> Handle(IDatabase db,[FromQuery] string? query)
     {
-        return db.Bonsais
+        var bonsais = db.Bonsais.ToList();
+        if (query is not null)
+        {
+            bonsais = bonsais.Where(b => b.Name.Contains(query)).ToList();
+        }
+
+        return bonsais
             .Select(item => new Response(
                 Id: item.Id,
                 Name: item.Name,
