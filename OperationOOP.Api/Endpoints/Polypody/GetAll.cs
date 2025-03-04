@@ -1,4 +1,5 @@
-﻿namespace OperationOOP.Api.Endpoints;
+﻿using Microsoft.AspNetCore.Mvc;
+namespace OperationOOP.Api.Endpoints;
 public class GetAllPolypodys : IEndpoint
 {
     // Mapping
@@ -13,8 +14,14 @@ public class GetAllPolypodys : IEndpoint
     );
 
     //Logic
-    private static List<Response> Handle(IDatabase db)
+    private static List<Response> Handle(IDatabase db, [FromQuery] string? query)
     {
+        var polypodys = db.Polypody.ToList();
+        if (query is not null)
+        {
+            polypodys = polypodys.Where(p => p.Name.Contains(query)).ToList();
+        }
+
         return db.Polypody
             .Select(item => new Response(
                 Id: item.Id,
