@@ -20,10 +20,7 @@ public class GetAllBonsais : IEndpoint
     private static List<Response> Handle(IDatabase db,[FromQuery] string? query)
     {
         var bonsais = db.Bonsais.ToList();
-        if (query is not null)
-        {
-            bonsais = bonsais.Where(b => b.Name.Contains(query)).ToList();
-        }
+        if (query is not null) bonsais = bonsais.Where(b => b.Name.Contains(query)).ToList();
 
         return bonsais
             .Select(item => new Response(

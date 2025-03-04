@@ -18,10 +18,8 @@ public class GetAllOpuntias : IEndpoint
     private static List<Response> Handle(IDatabase db, [FromQuery] string? query)
     {
         var opuntias = db.Opuntias.ToList();
-        if (query is not null)
-        {
-            opuntias = opuntias.Where(o => o.Name.Contains(query)).ToList();
-        }
+        if (query is not null) opuntias = opuntias.Where(o => o.Name.Contains(query)).ToList();
+
         return opuntias
             .Select(item => new Response(
                 Id: item.Id,
